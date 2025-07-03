@@ -21,7 +21,7 @@ func main() {
 	})
 
 	// Start the server
-	addr := ":" + port
+	addr := ":" + port // using local ipv4 address or localhost address
 	log.Printf("Starting server on %s...", addr)
 	err := http.ListenAndServe(addr, nil)
 	if err != nil {
