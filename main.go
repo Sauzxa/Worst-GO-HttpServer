@@ -23,7 +23,7 @@ func main() {
 	// Start the server
 	addr := ":" + port // using local ipv4 address or localhost address
 	log.Printf("Starting server on %s...", addr)
-	err := http.ListenAndServe(addr, nil)
+	err := http.ListenAndServe(addr, nil) // create + start server on addr ou tasta9bal reqs tcp fl port ta3 address
 	if err != nil {
 		log.Fatalf("Server failed to start: %v", err)
 	}
