@@ -15,8 +15,8 @@ func main() {
 	}
 
 	// Define HTTP handler function
-	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		log.Printf("%s %s", r.Method, r.URL.Path)
+	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) { // w type http.Response ( interface)
+		log.Printf("%s %s", r.Method, r.URL.Path) // r pointer 3la structe ta3 methode + url Headers, body, form data, etc.
 		fmt.Fprintf(w, "Hello, you've requested: %s\n", r.URL.Path)
 	})
 
