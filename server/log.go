@@ -1,6 +1,9 @@
 package server
 
-import "sync"
+import (
+	"errors"
+	"sync"
+)
 
 type Recored struct {
 	Offset uint64 `json:"offset"` // filed will be returned as json
@@ -26,8 +29,14 @@ func (l *Log) Append(record Recored) (uint64, error) { // append record to log
 
 	return record.Offset, nil
 }
+
+var ErrorRecordNotFound = errors.New("record not found")
+
 func (l *Log) Read(offset uint64) (Recored, error) {
 	l.mu.Lock()
+	if offset >= uint64(len(l.Recoreds)) {
+		return Recored{}, ErrorRecordNotFound
+	}
 	defer l.mu.Unlock()
 	return l.Recoreds[offset], nil
 }
