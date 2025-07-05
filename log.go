@@ -16,8 +16,12 @@ func NewLog() *Log { // instance ml log struct to get access with pointer
 	return &Log{}
 }
 func (l *Log) Append(record Recored) (uint64, error) { // append record to log
+	defer l.mu.Unlock() // ki tkamal appending unlockiha
+	l.mu.Lock()         // lock the recoreds when we append record
 	// set the record offset
 	record.Offset = uint64(len(l.Recoreds))
+	//append
+
 	l.Recoreds = append(l.Recoreds, record)
 
 	return record.Offset, nil
