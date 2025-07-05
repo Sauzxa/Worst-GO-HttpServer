@@ -1,11 +1,14 @@
 package server
 
+import "sync"
+
 type Recored struct {
 	Offset uint64 `json:"offset"` // filed will be returned as json
 	Value  []byte `json:"value"`  // same here we should pute it with capital to let it public
 }
 
 type Log struct {
+	mu       sync.Mutex // to lock the loh when we append record
 	Recoreds []Recored
 }
 
