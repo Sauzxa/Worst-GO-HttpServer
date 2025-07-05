@@ -26,3 +26,8 @@ func (l *Log) Append(record Recored) (uint64, error) { // append record to log
 
 	return record.Offset, nil
 }
+func (l *Log) Read(offset uint64) (Recored, error) {
+	l.mu.Lock()
+	defer l.mu.Unlock()
+	return l.Recoreds[offset], nil
+}
