@@ -15,6 +15,7 @@ type ProducerResponse struct {
 }
 
 func (s *httpLogServer) handleProducer(w http.ResponseWriter, r *http.Request) {
+	defer r.Body.Close() // close Body stream
 	var req ProducerRequest
 	err := json.NewDecoder(r.Body).Decode(&req) // req body n decodeha l struct
 	if err != nil {

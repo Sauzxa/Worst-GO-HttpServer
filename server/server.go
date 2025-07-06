@@ -15,9 +15,11 @@ func newHTTPLogServer() *httpLogServer {
 }
 
 func NewHTTPServer(addr string) *http.Server {
+	httpServer := newHTTPLogServer()
+
 	router := mux.NewRouter()
-	router.HandleFunc("/", svr.handleProducer).Methods("POST")
-	router.HandleFunc("/", svr.handleConsumer).Methods("GET")
+	router.HandleFunc("/", httpServer.handleProducer).Methods("POST")
+	router.HandleFunc("/", httpServer.handleConsumer).Methods("GET")
 
 	return &http.Server{
 		Addr:    addr,
