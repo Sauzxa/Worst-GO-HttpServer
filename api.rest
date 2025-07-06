@@ -1,0 +1,31 @@
+### Test POST endpoint to add a new record
+POST http://localhost:8080/
+Content-Type: application/json
+
+{
+  "Record": {
+    "Value": "Hello, this is a test record!"
+  }
+}
+
+### Test GET endpoint to retrieve a record by offset
+GET http://localhost:8080/?offset=0
+Content-Type: application/json
+
+### Test GET endpoint with non-existent offset
+GET http://localhost:8080/?offset=999
+Content-Type: application/json
+
+### Test POST endpoint with another record
+POST http://localhost:8080/
+Content-Type: application/json
+
+{
+  "Record": {
+    "Value": "This is the second test record!"
+  }
+}
+
+### Test GET endpoint to retrieve the second record
+GET http://localhost:8080/?offset=1
+Content-Type: application/json
